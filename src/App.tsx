@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import ToDoList from './components/ToDoList';
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;600&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,6 +21,7 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
+  font-family: 'Frank Ruhl Libre', serif;
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -54,7 +55,7 @@ table {
   box-sizing: border-box;
 }
 body{
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Frank Ruhl Libre', serif;
   background-color:${(props) => props.theme.bgColor};
   color:${(props) => props.theme.textColor};
 }
@@ -64,6 +65,11 @@ a{
 }
 li{
   list-style: none;
+  font-family: 'Frank Ruhl Libre', serif;
+}
+button, input, select{
+  font-family: 'Frank Ruhl Libre', serif;
+
 }
 
 `;

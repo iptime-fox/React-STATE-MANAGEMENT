@@ -42,5 +42,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://iptime-fox.github.io/React-ToDo"
+  "homepage": "https://iptime-fox.github.io/React-ToDo",
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  }
 }
