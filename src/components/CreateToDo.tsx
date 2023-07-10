@@ -4,10 +4,12 @@ import { categoryState, toDoState } from '../atoms';
 import { styled } from 'styled-components';
 
 const CreateWrapper = styled.div`
-  width: 100%;
+  width: 70%;
+  margin-bottom: 1rem;
   form {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    column-gap: 1.5rem;
   }
   input {
     width: 80%;

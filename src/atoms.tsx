@@ -14,18 +14,25 @@ export interface IToDo {
   category: Categories;
 }
 
-export const categoryState = atom<Categories>({
-  key: 'category',
-  default: Categories.TO_DO,
-});
-
 export const { persistAtom } = recoilPersist({
   key: 'todoLocal',
   storage: localStorage,
 });
 
+export const categoryState = atom<Categories>({
+  key: 'category',
+  default: Categories.TO_DO,
+  effects_UNSTABLE: [persistAtom],
+});
+
 export const toDoState = atom<IToDo[]>({
   key: 'toDo',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const newCateState = atom<IToDo[]>({
+  key: 'newCategory',
   default: [],
   effects_UNSTABLE: [persistAtom],
 });

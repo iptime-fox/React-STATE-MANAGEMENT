@@ -1,9 +1,11 @@
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Categories, categoryState, toDoSelector } from '../atoms';
+import { Categories, IToDo, categoryState, toDoSelector } from '../atoms';
 import CreateToDo from './CreateToDo';
 import ToDo from './ToDo';
 import { styled } from 'styled-components';
+
+import NewCate from './NewCate';
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +19,7 @@ const ToDoWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
+  width: 700px;
   height: auto;
 `;
 
@@ -33,7 +35,7 @@ const SelectWrapper = styled.div`
   width: 70%;
 
   margin-bottom: 1.5rem;
-  justify-content: space-evenly;
+  justify-content: center;
   select {
     width: 7rem;
     background-color: #ffacac;
@@ -43,6 +45,12 @@ const SelectWrapper = styled.div`
     padding: 0.25rem;
     text-align: center;
     font-size: 1rem;
+  }
+  input {
+    width: 200px;
+    border: none;
+    border-bottom: 2px solid #ffacac;
+    padding: 0.25rem 0.5rem;
   }
 `;
 
@@ -60,17 +68,21 @@ const LiWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     font-weight: 600;
-    font-size: 14px;
   }
 `;
+
+interface IForm {
+  category: string;
+}
 
 function ToDoList() {
   const toDos = useRecoilValue(toDoSelector);
   const [category, setCategory] = useRecoilState(categoryState);
+
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
     setCategory(event.currentTarget.value as any);
   };
-  console.log(toDos);
+
   return (
     <Container>
       <ToDoWrapper>
@@ -82,8 +94,9 @@ function ToDoList() {
             <option value={Categories.DOING}>Doing</option>
             <option value={Categories.DONE}>Done</option>
           </select>
-          <CreateToDo />
+          <NewCate />
         </SelectWrapper>
+        <CreateToDo />
         <LiWrapper>
           {toDos?.map((toDo) => (
             <ToDo key={toDo.id} {...toDo} />

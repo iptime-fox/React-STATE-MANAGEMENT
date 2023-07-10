@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSetRecoilState } from 'recoil';
-import { Categories, IToDo, toDoState } from '../atoms';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { Categories, IToDo, toDoState, categoryState } from '../atoms';
 import { styled } from 'styled-components';
 
 const ButtonWrapper = styled.div`
@@ -31,6 +31,7 @@ const ButtonWrapper = styled.div`
 
 function ToDo({ text, category, id }: IToDo) {
   const setToDos = useSetRecoilState(toDoState);
+
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const {
       currentTarget: { name },
