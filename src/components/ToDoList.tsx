@@ -4,7 +4,7 @@ import { Categories, IToDo, categoryState, toDoSelector } from '../atoms';
 import CreateToDo from './CreateToDo';
 import ToDo from './ToDo';
 import { styled } from 'styled-components';
-
+import { Helmet } from 'react-helmet';
 import NewCate from './NewCate';
 
 const Container = styled.div`
@@ -85,6 +85,9 @@ function ToDoList() {
 
   return (
     <Container>
+      <Helmet>
+        <title>ToDo</title>
+      </Helmet>
       <ToDoWrapper>
         <Header>🧸 TO DO LIST 🧸</Header>
 
