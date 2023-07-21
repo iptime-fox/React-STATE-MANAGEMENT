@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Categories, IToDo, categoryState, toDoSelector } from '../atoms';
 import CreateToDo from './CreateToDo';
 import ToDo from './ToDo';
 import { styled } from 'styled-components';
 import { Helmet } from 'react-helmet';
-import NewCate from './NewCate';
+import { useForm } from 'react-hook-form';
+// import AddComponent from './AddComponent';
 
 const Container = styled.div`
   display: flex;
@@ -73,6 +74,7 @@ const LiWrapper = styled.div`
 
 interface IForm {
   category: string;
+  addText: string;
 }
 
 function ToDoList() {
@@ -82,7 +84,18 @@ function ToDoList() {
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
     setCategory(event.currentTarget.value as any);
   };
+  const { register, handleSubmit, setValue } = useForm();
+  const [newCategories, setNewCategories] = useState('');
 
+  const OnValid = ({ addText }: IForm) => {
+    if (!addText) {
+      return;
+    }
+
+    setData;
+
+    setValue('addText', '');
+  };
   return (
     <Container>
       <Helmet>
@@ -97,7 +110,13 @@ function ToDoList() {
             <option value={Categories.DOING}>Doing</option>
             <option value={Categories.DONE}>Done</option>
           </select>
-          <NewCate />
+          <form onSubmit={handleSubmit(OnValid)}>
+            <input
+              {...register('addText')}
+              type='text'
+              placeholder='Create new categories'
+            />
+          </form>
         </SelectWrapper>
         <CreateToDo />
         <LiWrapper>
