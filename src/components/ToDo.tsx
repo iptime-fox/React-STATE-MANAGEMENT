@@ -2,6 +2,7 @@ import React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Categories, IToDo, toDoState, categoryState } from '../atoms';
 import { styled } from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const ButtonWrapper = styled.div`
   button {
@@ -51,27 +52,32 @@ function ToDo({ text, category, id }: IToDo) {
   };
 
   return (
-    <li>
-      <span>🧸 {text}</span>
-      <ButtonWrapper>
-        {category !== Categories.DOING && (
-          <button name={Categories.DOING} onClick={onClick}>
-            Doing
-          </button>
-        )}
-        {category !== Categories.TO_DO && (
-          <button name={Categories.TO_DO} onClick={onClick}>
-            To Do
-          </button>
-        )}
-        {category !== Categories.DONE && (
-          <button name={Categories.DONE} onClick={onClick}>
-            Done
-          </button>
-        )}
-        <button onClick={Delete}>🗑️</button>
-      </ButtonWrapper>
-    </li>
+    <>
+      <Helmet>
+        <title>ToDo</title>
+      </Helmet>
+      <li>
+        <span>🧸 {text}</span>
+        <ButtonWrapper>
+          {category !== Categories.DOING && (
+            <button name={Categories.DOING} onClick={onClick}>
+              Doing
+            </button>
+          )}
+          {category !== Categories.TO_DO && (
+            <button name={Categories.TO_DO} onClick={onClick}>
+              To Do
+            </button>
+          )}
+          {category !== Categories.DONE && (
+            <button name={Categories.DONE} onClick={onClick}>
+              Done
+            </button>
+          )}
+          <button onClick={Delete}>🗑️</button>
+        </ButtonWrapper>
+      </li>
+    </>
   );
 }
 
